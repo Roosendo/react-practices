@@ -1,23 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Boton from './components/Boton';
+import Contador from './components/Contador';
+import spotifyLogo from './imgs/spotify.png';
 
 function App() {
+  const [numClicks, setNumClicks] = useState(0);
+
+  const manejarClick = () => {
+    setNumClicks(numClicks + 1);
+  };
+
+  const reiniciarContador = () => {
+    setNumClicks(0);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <div className='spotify-logo-contenedor'>
+        <img
+          className='spotify-logo'
+          src={spotifyLogo}
+          alt='Logo de freeCodeCamp' />
+      </div>
+      <div className='contenedor-main'>
+        <Contador
+          numClicks={numClicks} />
+        <Boton 
+          text='Click!'
+          esBotonClick={true}
+          manejarClick={manejarClick} />
+        <Boton
+          text='Reiniciar'
+          esBotonClick={false}
+          manejarClick={reiniciarContador} />
+      </div>
     </div>
   );
 }
